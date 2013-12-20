@@ -1,0 +1,38 @@
+<jaxb:bindings
+  jaxb:version="2.0"
+  xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+  xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd">
+
+  <jaxb:globalBindings>
+    <xjc:simple />
+    <jaxb:javaType name="java.util.Date" xmlType="xs:dateTime"
+      parseMethod="com.tieto.ipac.presence.jaxb2.DateAdapter.parseDate"
+      printMethod="com.tieto.ipac.presence.jaxb2.DateAdapter.printDate" />
+  </jaxb:globalBindings>
+
+  <jaxb:bindings schemaLocation="ipac-presence-srs-pm.xsd">
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.tieto.ipac.presence.srs.pm.jaxb2" />
+<!--      <jaxb:nameXmlTransform>
+        <jaxb:typeName prefix="T" />
+        <jaxb:elementName prefix="T" />
+      </jaxb:nameXmlTransform>-->
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+
+  <jaxb:bindings schemaLocation="ipac-presence-common.xsd">
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.tieto.ipac.presence.jaxb2" />
+<!--      <jaxb:nameXmlTransform>
+        <jaxb:typeName prefix="T" />
+        <jaxb:elementName prefix="T" />
+      </jaxb:nameXmlTransform>-->
+    </jaxb:schemaBindings>
+  </jaxb:bindings>
+
+</jaxb:bindings>
+
+

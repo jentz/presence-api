@@ -1,0 +1,249 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<xs:schema targetNamespace="urn:com.tieto.ipac.presence.common"
+           xmlns:tns="urn:com.tieto.ipac.presence.common"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+           xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+           xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+           jaxb:extensionBindingPrefixes="xjc"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           jaxb:version="2.0"
+           version="0.0.3">
+
+ <!-- Common presence related data -->
+
+  <xs:simpleType name="ContactAvailability">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="none"/>
+      <xs:enumeration value="onLine"/>
+      <xs:enumeration value="idleOnLine"/>
+      <xs:enumeration value="busy"/>
+      <xs:enumeration value="idleBusy"/>
+      <xs:enumeration value="doNotDisturb"/>
+      <xs:enumeration value="beRightBack"/>
+      <xs:enumeration value="away"/>
+      <xs:enumeration value="offline"/>
+    </xs:restriction>
+  </xs:simpleType>
+   
+  <xs:simpleType name="EndpointLocationEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="office"/>
+      <xs:enumeration value="mobile"/>
+      <xs:enumeration value="home"/>
+      <xs:enumeration value="none"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="EndpointLocationEnumEx">
+    <xs:union memberTypes="tns:EndpointLocationEnum xs:token"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="ActivityTokenTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="on-the-phone"/>
+      <xs:enumeration value="in-a-conference"/>
+      <xs:enumeration value="in-a-meeting"/>
+      <xs:enumeration value="out-of-office"/>
+      <xs:enumeration value="urgent-interruptions-only"/>
+      <xs:enumeration value="off-work"/>
+      <xs:enumeration value="in-presentation"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ActivityType">
+    <xs:union memberTypes="tns:ActivityTokenTypeEnum xs:token" />
+  </xs:simpleType>
+  
+  <xs:complexType name="Machine">
+    <xs:sequence>
+      <xs:element name="machineName" type="xs:string"/>
+      <xs:element name="state" type="tns:MachineState" minOccurs="0"/>
+      <xs:element name="deviceType" type="tns:DeviceTypeEnumEx" minOccurs="0"/>
+      <xs:element name="endpointLocation" type="tns:EndpointLocationEnumEx" minOccurs="0"/>
+      <xs:element name="capabilities" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+     </xs:sequence>
+  </xs:complexType>
+   
+  <xs:simpleType name="MachineState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="unknown"/>
+      <xs:enumeration value="online"/>
+      <xs:enumeration value="idle"/>
+      <xs:enumeration value="away"/>
+      <xs:enumeration value="offline"/>
+    </xs:restriction>
+  </xs:simpleType>
+   
+  <xs:simpleType name="DeviceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="undefined"/>
+      <xs:enumeration value="computer"/>
+      <xs:enumeration value="deskPhone"/>
+      <xs:enumeration value="mobile"/>
+      <xs:enumeration value="web"/>
+      <xs:enumeration value="custom"/>
+    </xs:restriction>
+  </xs:simpleType>
+ 
+  <xs:simpleType name="DeviceTypeEnumEx">
+    <xs:union memberTypes="tns:DeviceType xs:token" />
+  </xs:simpleType>
+
+  <xs:complexType name="Note">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string"/>
+      <xs:element name="noteType" type="tns:NoteType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="NoteType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="unknown"/>
+      <xs:enumeration value="personal"/>
+      <xs:enumeration value="outOfOffice"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+<!-- Centrex/Telephony/Linestate related data -->
+
+  <!-- Phone number that belongs to the SIP user -->
+  <xs:complexType name="PhoneNumber">
+    <xs:sequence>
+      <xs:element name="uri" type="xs:anyURI" minOccurs="0"/> <!-- tel:+4648012345 -->
+      <xs:element name="bsnb" type="xs:string" minOccurs="0"/>
+      <xs:element name="centrexService" type="tns:CentrexService" minOccurs="0"/>
+      <xs:element name="phoneType" type="tns:PhoneType"/>
+      <xs:element name="lineState" type="tns:LineState"/>
+      <xs:element name="direction" type="tns:Direction"/>
+      <xs:element name="disconnectBy" type="tns:DisconnectBy"/>
+      <xs:element name="disconnectCause" type="xs:unsignedByte" minOccurs="0" maxOccurs="unbounded"/> <!-- ISUP cause indicators -->
+      <xs:element name="callPartNumbers" type="tns:CallPartNumber" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="capabilities" type="tns:PhoneCapability" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="visibility" type="tns:VisibilityLevel"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="PhoneCapability">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="centrex"/>       <!-- This is a Centrex subscription -->
+      <xs:enumeration value="forkingMember"/> <!-- The number is a member in a forking list -->
+      <xs:enumeration value="mfn"/>           <!-- Main Forking Number -->
+      <xs:enumeration value="defaultNumber"/> <!-- The number used for outgoing calls -->
+      <xs:enumeration value="cdg"/>           <!-- Call Distribution Group -->
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Allow to expose callPartNumbers on this level -->
+  <!-- -->
+  <xs:simpleType name="VisibilityLevel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="none"/>
+      <xs:enumeration value="personal"/>   <!-- Self -->
+      <xs:enumeration value="workgroup"/>  <!-- XTas Cost center -->
+      <xs:enumeration value="site"/>       <!-- XTas Customer -->
+      <xs:enumeration value="company"/>    <!-- XTas Company -->
+      <xs:enumeration value="federation"/> <!-- XTas Agreement -->
+      <xs:enumeration value="all"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="PhoneType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="unknown"/>
+      <xs:enumeration value="pots"/>
+      <xs:enumeration value="voip"/>
+      <xs:enumeration value="mobile"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DisconnectBy">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="myself"/>
+      <xs:enumeration value="remote"/>
+      <xs:enumeration value="lostNetwork"/> 
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Direction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="unknown"/>
+      <xs:enumeration value="inward"/>
+      <xs:enumeration value="outward"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="LineState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="notRetrieved"/>
+      <xs:enumeration value="reachable"/>
+      <xs:enumeration value="notReachable"/>
+      <xs:enumeration value="busy"/>
+      <xs:enumeration value="dialing"/>
+      <xs:enumeration value="alerting"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="E164">
+    <xs:restriction base="xs:token">
+      <xs:pattern value="^\+?\d{10,15}$"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="CallPartNumber">
+    <xs:sequence>
+      <xs:element name="number" type="xs:string"/>
+      <xs:element name="clir" type="tns:CliType"/>
+      <xs:element name="callPartNumberType" type="tns:CallPartNumberType"/>
+      <xs:element name="noa" type="xs:unsignedByte"/> <!-- Nature Of Address indicator -->
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="CliType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="notAvailable"/>
+      <xs:enumeration value="allowed"/>
+      <xs:enumeration value="restricted"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CallPartNumberType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="cdpn"/>    <!-- Called Party Number -->
+      <xs:enumeration value="cgpn"/>    <!-- Calling Party Number -->
+      <xs:enumeration value="gnAcgpn"/> <!-- Generic Number Additional Calling Party Number -->
+      <xs:enumeration value="ocn"/>     <!-- Original Called Number -->
+      <xs:enumeration value="rn"/>      <!-- Redirected Number -->
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="CentrexService">
+    <xs:sequence>
+      <xs:element name="serviceType" type="tns:ServiceType"/>
+      <xs:element name="activated" type="xs:boolean"/>
+      <xs:element name="forwardedNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="absentCode" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="8"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="returnTime" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="ServiceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="cfu"/>  <!-- Call Forward Unconditional / immediate diversion -->
+      <xs:enumeration value="cfb"/>  <!-- Call Forward Busy / diversion on busy -->
+      <xs:enumeration value="cfna"/> <!-- Call Forward No Answer / diversion no reply -->
+      <xs:enumeration value="mw"/>   <!-- Message Waiting -->
+      <xs:enumeration value="abs"/>  <!-- Absent mode / hänvisning -->
+      <xs:enumeration value="gd"/>   <!-- General Deactivation -->
+    </xs:restriction>
+  </xs:simpleType>
+
+ </xs:schema>

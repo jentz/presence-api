@@ -1,0 +1,179 @@
+{
+  "type" : "object",
+  "properties" : {
+    "lyncUri" : {
+      "type" : "string"
+    },
+    "capabilites" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "presenceStatus" : {
+      "type" : "object",
+      "properties" : {
+        "timestamp" : {
+          "type" : "string",
+          "format" : "DATE_TIME"
+        },
+        "manual" : {
+          "type" : "boolean"
+        },
+        "contactAvailability" : {
+          "type" : "string"
+        },
+        "subscriptions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "centrexService" : {
+                "type" : "object",
+                "properties" : {
+                  "forwardedNumber" : {
+                    "type" : "string"
+                  },
+                  "returnTime" : {
+                    "type" : "string",
+                    "format" : "DATE_TIME"
+                  },
+                  "absentCode" : {
+                    "type" : "integer"
+                  },
+                  "activated" : {
+                    "type" : "boolean"
+                  },
+                  "serviceType" : {
+                    "type" : "string",
+                    "required" : true
+                  }
+                }
+              },
+              "disconnectBy" : {
+                "type" : "string",
+                "required" : true
+              },
+              "visibility" : {
+                "type" : "string",
+                "required" : true
+              },
+              "direction" : {
+                "type" : "string",
+                "required" : true
+              },
+              "lineState" : {
+                "type" : "string",
+                "required" : true
+              },
+              "bsnb" : {
+                "type" : "string"
+              },
+              "subscriptionType" : {
+                "type" : "string",
+                "required" : true
+              },
+              "callPartNumbers" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "clir" : {
+                      "type" : "string",
+                      "required" : true
+                    },
+                    "noa" : {
+                      "type" : "integer"
+                    },
+                    "callPartNumberType" : {
+                      "type" : "string",
+                      "required" : true
+                    },
+                    "number" : {
+                      "type" : "string",
+                      "required" : true
+                    }
+                  }
+                }
+              },
+              "capabilities" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "disconnectCauses" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "integer"
+                }
+              },
+              "uri" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "lastActive" : {
+          "type" : "string",
+          "format" : "DATE_TIME"
+        },
+        "machines" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "machineName" : {
+                "type" : "string",
+                "required" : true
+              },
+              "deviceType" : {
+                "type" : "string"
+              },
+              "state" : {
+                "type" : "string"
+              },
+              "capabilities" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "endpointLocation" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "activity" : {
+          "type" : "string"
+        }
+      }
+    },
+    "bsnb" : {
+      "type" : "string"
+    },
+    "notes" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "message" : {
+            "type" : "string",
+            "required" : true
+          },
+          "noteType" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "cnid" : {
+      "type" : "string"
+    },
+    "uri" : {
+      "type" : "string",
+      "required" : true
+    }
+  }
+}

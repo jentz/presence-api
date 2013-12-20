@@ -1,0 +1,100 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<xs:schema targetNamespace="urn:com.tieto.ipac.presence.srs"
+           xmlns:tns="urn:com.tieto.ipac.presence.srs"
+           xmlns:cm="urn:com.tieto.ipac.presence.common"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+           xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+           xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+           jaxb:extensionBindingPrefixes="xjc"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           jaxb:version="2.0"
+           version="0.0.3">
+
+  <xs:import namespace="urn:com.tieto.ipac.presence.common" schemaLocation="ipac-presence-common.xsd"/>
+
+  <!--Is sent from PM to SRS. Some part of the message can also be sent from SRS to PM -->
+  <xs:element name="presence" type="tns:Presence" />
+  <xs:element name="mwi" type="tns:Mwi"/>
+
+  <!-- Sent from SRS to PM to get current presence status for users. Replies must be sent to the requester -->
+  <xs:element name="getCurrentPresence" type="tns:PresenceRequest"/>
+
+  <!-- Sent from PM to SRS to set centrex services. A CentrexServiceResponse shall be sent to the requester (UAC) -->
+  <xs:element name="setCentrexService" type="tns:CentrexServiceRequest"/>
+  
+  <xs:complexType name="Presence">
+    <xs:sequence>
+      <xs:element name="uri" type="xs:anyURI"/>  <!-- The users sip uri in TUM/TGW -->
+      <xs:element name="lyncUri" type="xs:anyURI" minOccurs="0"/> <!-- The users lync id -->
+      <xs:element name="cnid" type="xs:string" minOccurs="0"/>
+      <xs:element name="bsnb" type="xs:string" minOccurs="0"/>
+      <xs:element name="presenceStatus" type="tns:PresenceStatus" minOccurs="0"/>
+      <xs:element name="notes" type="cm:Note" minOccurs="0" maxOccurs="unbounded"/> <!-- Can be many notes for same user, e.g. the user can have a personal and out off office notes at the same time -->
+      <xs:element name="capabilites" type="xs:string" minOccurs="0" maxOccurs="unbounded"/> <!-- chat,mwi,presence? -->
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PresenceStatus">
+    <xs:sequence>
+      <xs:element name="contactAvailability" type="cm:ContactAvailability" minOccurs="0"/>
+      <xs:element name="activity" type="cm:ActivityType" minOccurs="0"/>
+      <xs:element name="manual" type="xs:boolean"/>  <!-- Indicates whether this presence is set manually or automatically.-->
+      <xs:element name="lastActive" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="timestamp" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="phoneNumbers" type="cm:PhoneNumber" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="machines" type="cm:Machine" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PresenceRequest">
+    <xs:sequence>
+      <xs:element name="uri" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="lyncId" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="cnid" type="xs:string"/>
+      <xs:element name="cid" type="xs:long"/>
+      <xs:element name="forcedUpdate" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CentrexServiceRequest">
+    <xs:sequence>
+      <xs:element name="bsnb" type="xs:string"/>
+      <xs:element name="cnid" type="xs:string"/>
+      <xs:element name="centrexService" type="cm:CentrexService"/>
+      <xs:element name="cid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CentrexServiceResponse">
+    <xs:sequence>
+      <xs:element name="bsnb" type="xs:string"/>
+      <xs:element name="cnid" type="xs:string"/>
+      <xs:element name="centrexService" type="cm:CentrexService"/>
+      <xs:element name="status" type="xs:int"/>
+      <xs:element name="cid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Mwi">
+    <xs:sequence>
+      <xs:element name="to" type="xs:anyURI"/>
+      <xs:element name="from" type="xs:anyURI"/>     <!-- The source address of the MWI -->
+      <xs:element name="newMsgs" type="xs:int"/>     <!-- Number of new/unread message(s) -->
+      <xs:element name="oldMsgs" type="xs:int"/>     <!-- Number of old/read message(s) -->
+      <xs:element name="mwiType" type="tns:MwiType"/>
+      <xs:element name="msgData" type="xs:string" minOccurs="0"/>  <!-- The text message if the mwiType is text -->
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="MwiType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="unknown"/>
+      <xs:enumeration value="voice"/>
+      <xs:enumeration value="text"/>
+      <xs:enumeration value="fax"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
