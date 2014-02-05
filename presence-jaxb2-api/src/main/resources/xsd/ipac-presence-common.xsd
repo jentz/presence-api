@@ -9,7 +9,7 @@
            elementFormDefault="qualified"
            attributeFormDefault="unqualified"
            jaxb:version="2.0"
-           version="0.0.3">
+           version="0.0.4">
 
  <!-- Common presence related data -->
 
@@ -118,7 +118,7 @@
       <xs:element name="lineState" type="tns:LineState"/>
       <xs:element name="direction" type="tns:Direction"/>
       <xs:element name="disconnectBy" type="tns:DisconnectBy"/>
-      <xs:element name="disconnectCause" type="xs:unsignedByte" minOccurs="0" maxOccurs="unbounded"/> <!-- ISUP cause indicators -->
+      <xs:element name="releaseCauseIndicators" type="xs:unsignedByte" minOccurs="0" maxOccurs="unbounded"/> <!-- ISUP cause indicators (release) -->
       <xs:element name="callPartNumbers" type="tns:CallPartNumber" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="capabilities" type="tns:PhoneCapability" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="visibility" type="tns:VisibilityLevel"/>

@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum Direction {
 
   UNKNOWN("unknown"),
-  IN("in"),
-  OUT("out");
+  INWARD("inward"),
+  OUTWARD("outward");
   private final String value;
 
   Direction(String v) {

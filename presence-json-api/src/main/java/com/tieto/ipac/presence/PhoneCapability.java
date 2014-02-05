@@ -9,7 +9,7 @@ public enum PhoneCapability {
   FORKING_MEMBER("forkingMember"),
   MFN("mfn"),
   DEFAULT_NUMBER("defaultNumber"),
-  ACDG("acdg");
+  CDG("cdg");
   private final String value;
 
   PhoneCapability(String v) {

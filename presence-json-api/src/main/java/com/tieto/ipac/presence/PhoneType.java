@@ -3,7 +3,7 @@ package com.tieto.ipac.presence;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum SubscriptionType {
+public enum PhoneType {
 
   UNKNOWN("unknown"),
   POTS("pots"),
@@ -11,7 +11,7 @@ public enum SubscriptionType {
   MOBILE("mobile");
   private final String value;
 
-  SubscriptionType(String v) {
+  PhoneType(String v) {
     value = v;
   }
 
@@ -21,8 +21,8 @@ public enum SubscriptionType {
   }
 
   @JsonCreator
-  public static SubscriptionType fromValue(String v) {
-    for (SubscriptionType c : SubscriptionType.values()) {
+  public static PhoneType fromValue(String v) {
+    for (PhoneType c : PhoneType.values()) {
       if (c.value.equals(v)) {
         return c;
       }

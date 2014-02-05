@@ -10,14 +10,14 @@ public class PhoneNumber {
   protected String bsnb;
   protected CentrexService centrexService;
   @JsonProperty(required = true)
-  protected SubscriptionType subscriptionType;
+  protected PhoneType phoneType;
   @JsonProperty(required = true)
   protected LineState lineState;
   @JsonProperty(required = true)
   protected Direction direction;
   @JsonProperty(required = true)
   protected DisconnectBy disconnectBy;
-  protected List<Short> disconnectCauses;
+  protected List<Short> releaseCauseIndicators;
   protected List<CallPartNumber> callPartNumbers;
   protected List<PhoneCapability> capabilities;
   @JsonProperty(required = true)
@@ -47,12 +47,12 @@ public class PhoneNumber {
     this.centrexService = value;
   }
 
-  public SubscriptionType getSubscriptionType() {
-    return subscriptionType;
+  public PhoneType getPhoneType() {
+    return phoneType;
   }
 
-  public void setSubscriptionType(SubscriptionType value) {
-    this.subscriptionType = value;
+  public void setPhoneType(PhoneType value) {
+    this.phoneType = value;
   }
 
   public LineState getLineState() {
@@ -80,30 +80,32 @@ public class PhoneNumber {
   }
 
   /**
-   * Gets the value of the disconnectCauses property.
+   * Gets the value of the releaseCauseIndicators property.
    *
    * <p>
-   * This accessor method returns a reference to the live list, not a snapshot.
-   * Therefore any modification you make to the returned list will be present
-   * inside the object. This is why there is not a <CODE>set</CODE> method
-   * for the disconnectCauses property.
+   * This accessor method returns a reference to the live list,
+   * not a snapshot. Therefore any modification you make to the
+   * returned list will be present inside the JAXB object.
+   * This is why there is not a <CODE>set</CODE> method for the releaseCauseIndicators property.
    *
    * <p>
    * For example, to add a new item, do as follows:
    * <pre>
-   *    getDisconnectCauses().add(newItem);
+   *    getReleaseCauseIndicators().add(newItem);
    * </pre>
    *
    *
    * <p>
-   * @return  Objects of the following type(s) are allowed in the list {@link Short }
+   * @return Objects of the following type(s) are allowed in the list
+   * {@link Short }
+   *
    *
    */
-  public List<Short> getDisconnectCauses() {
-    if (disconnectCauses == null) {
-      disconnectCauses = new ArrayList<>();
-    }
-    return this.disconnectCauses;
+  public List<Short> getReleaseCauseIndicators() {
+      if (releaseCauseIndicators == null) {
+          releaseCauseIndicators = new ArrayList<>();
+      }
+      return this.releaseCauseIndicators;
   }
 
   /**
