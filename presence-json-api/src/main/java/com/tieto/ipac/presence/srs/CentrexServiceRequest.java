@@ -11,7 +11,6 @@ public class CentrexServiceRequest {
   protected String cnid;
   @JsonProperty(required = true)
   protected CentrexService centrexService;
-  protected long cid;
 
   public String getBsnb() {
     return bsnb;
@@ -35,14 +34,6 @@ public class CentrexServiceRequest {
 
   public void setCentrexService(CentrexService value) {
     this.centrexService = value;
-  }
-
-  public long getCid() {
-    return cid;
-  }
-
-  public void setCid(long value) {
-    this.cid = value;
   }
 
 }

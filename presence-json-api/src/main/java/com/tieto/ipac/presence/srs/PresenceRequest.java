@@ -10,7 +10,6 @@ public class PresenceRequest {
   protected List<String> lyncIds;
   @JsonProperty(required = true)
   protected String cnid;
-  protected long cid;
   protected boolean forcedUpdate;
 
   public List<String> getUris() {
@@ -33,14 +32,6 @@ public class PresenceRequest {
 
   public void setCnid(String value) {
     this.cnid = value;
-  }
-
-  public long getCid() {
-    return cid;
-  }
-
-  public void setCid(long value) {
-    this.cid = value;
   }
 
   public boolean isForcedUpdate() {

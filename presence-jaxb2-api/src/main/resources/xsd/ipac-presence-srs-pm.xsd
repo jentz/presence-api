@@ -10,7 +10,7 @@
            elementFormDefault="qualified"
            attributeFormDefault="unqualified"
            jaxb:version="2.0"
-           version="0.0.3">
+           version="0.0.4">
 
   <xs:import namespace="urn:com.tieto.ipac.presence.common" schemaLocation="ipac-presence-common.xsd"/>
 
@@ -23,7 +23,7 @@
 
   <!-- Sent from PM to SRS to set centrex services. A CentrexServiceResponse shall be sent to the requester (UAC) -->
   <xs:element name="setCentrexService" type="tns:CentrexServiceRequest"/>
-  
+
   <xs:complexType name="Presence">
     <xs:sequence>
       <xs:element name="uri" type="xs:anyURI"/>  <!-- The users sip uri in TUM/TGW -->
@@ -50,10 +50,9 @@
 
   <xs:complexType name="PresenceRequest">
     <xs:sequence>
-      <xs:element name="uri" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="lyncId" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="uris" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="lyncIds" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="cnid" type="xs:string"/>
-      <xs:element name="cid" type="xs:long"/>
       <xs:element name="forcedUpdate" type="xs:boolean"/>
     </xs:sequence>
   </xs:complexType>
@@ -63,7 +62,6 @@
       <xs:element name="bsnb" type="xs:string"/>
       <xs:element name="cnid" type="xs:string"/>
       <xs:element name="centrexService" type="cm:CentrexService"/>
-      <xs:element name="cid" type="xs:long"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -73,7 +71,6 @@
       <xs:element name="cnid" type="xs:string"/>
       <xs:element name="centrexService" type="cm:CentrexService"/>
       <xs:element name="status" type="xs:int"/>
-      <xs:element name="cid" type="xs:long"/>
     </xs:sequence>
   </xs:complexType>
 
