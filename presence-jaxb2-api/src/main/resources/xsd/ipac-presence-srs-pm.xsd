@@ -10,7 +10,7 @@
            elementFormDefault="qualified"
            attributeFormDefault="unqualified"
            jaxb:version="2.0"
-           version="0.0.4">
+           version="0.0.5">
 
   <xs:import namespace="urn:com.tieto.ipac.presence.common" schemaLocation="ipac-presence-common.xsd"/>
 
@@ -76,10 +76,12 @@
 
   <xs:complexType name="Mwi">
     <xs:sequence>
-      <xs:element name="to" type="xs:anyURI"/>
-      <xs:element name="from" type="xs:anyURI"/>     <!-- The source address of the MWI -->
-      <xs:element name="newMsgs" type="xs:int"/>     <!-- Number of new/unread message(s) -->
-      <xs:element name="oldMsgs" type="xs:int"/>     <!-- Number of old/read message(s) -->
+      <xs:element name="to" type="xs:anyURI"/>                     <!-- The destination address of the MWI -->
+      <xs:element name="toCnid" type="xs:string" minOccurs="0"/>   <!-- The destination cnid of the MWI, must be used if the 'to' is in the format tel:bsnb -->
+      <xs:element name="from" type="xs:anyURI"/>                   <!-- The source address of the MWI -->
+      <xs:element name="fromCnid" type="xs:string" minOccurs="0"/> <!-- The source cnid of the MWI, must be used if the 'from' is in the format tel:bsnb -->
+      <xs:element name="newMsgs" type="xs:int"/>                   <!-- Number of new/unread message(s) -->
+      <xs:element name="oldMsgs" type="xs:int"/>                   <!-- Number of old/read message(s) -->
       <xs:element name="mwiType" type="tns:MwiType"/>
       <xs:element name="msgData" type="xs:string" minOccurs="0"/>  <!-- The text message if the mwiType is text -->
     </xs:sequence>

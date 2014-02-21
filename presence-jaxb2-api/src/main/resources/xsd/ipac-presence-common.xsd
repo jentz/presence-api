@@ -9,7 +9,7 @@
            elementFormDefault="qualified"
            attributeFormDefault="unqualified"
            jaxb:version="2.0"
-           version="0.0.4">
+           version="0.0.5">
 
  <!-- Common presence related data -->
 
@@ -26,7 +26,7 @@
       <xs:enumeration value="offline"/>
     </xs:restriction>
   </xs:simpleType>
-   
+
   <xs:simpleType name="EndpointLocationEnum">
     <xs:restriction base="xs:token">
       <xs:enumeration value="office"/>
@@ -55,7 +55,7 @@
   <xs:simpleType name="ActivityType">
     <xs:union memberTypes="tns:ActivityTokenTypeEnum xs:token" />
   </xs:simpleType>
-  
+
   <xs:complexType name="Machine">
     <xs:sequence>
       <xs:element name="machineName" type="xs:string"/>
@@ -65,7 +65,7 @@
       <xs:element name="capabilities" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
      </xs:sequence>
   </xs:complexType>
-   
+
   <xs:simpleType name="MachineState">
     <xs:restriction base="xs:string">
       <xs:enumeration value="unknown"/>
@@ -75,7 +75,7 @@
       <xs:enumeration value="offline"/>
     </xs:restriction>
   </xs:simpleType>
-   
+
   <xs:simpleType name="DeviceType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="undefined"/>
@@ -86,7 +86,7 @@
       <xs:enumeration value="custom"/>
     </xs:restriction>
   </xs:simpleType>
- 
+
   <xs:simpleType name="DeviceTypeEnumEx">
     <xs:union memberTypes="tns:DeviceType xs:token" />
   </xs:simpleType>
@@ -116,8 +116,8 @@
       <xs:element name="centrexService" type="tns:CentrexService" minOccurs="0"/>
       <xs:element name="phoneType" type="tns:PhoneType"/>
       <xs:element name="lineState" type="tns:LineState"/>
-      <xs:element name="direction" type="tns:Direction"/>
-      <xs:element name="disconnectBy" type="tns:DisconnectBy"/>
+      <xs:element name="direction" type="tns:Direction" minOccurs="0"/>
+      <xs:element name="disconnectBy" type="tns:DisconnectBy" minOccurs="0"/>
       <xs:element name="releaseCauseIndicators" type="xs:unsignedByte" minOccurs="0" maxOccurs="unbounded"/> <!-- ISUP cause indicators (release) -->
       <xs:element name="callPartNumbers" type="tns:CallPartNumber" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="capabilities" type="tns:PhoneCapability" minOccurs="0" maxOccurs="unbounded"/>
@@ -148,7 +148,7 @@
       <xs:enumeration value="all"/>
     </xs:restriction>
   </xs:simpleType>
-  
+
   <xs:simpleType name="PhoneType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="unknown"/>
@@ -162,7 +162,7 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="myself"/>
       <xs:enumeration value="remote"/>
-      <xs:enumeration value="lostNetwork"/> 
+      <xs:enumeration value="lostNetwork"/>
     </xs:restriction>
   </xs:simpleType>
 

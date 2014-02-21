@@ -6,8 +6,10 @@ public class Mwi {
 
   @JsonProperty(required = true)
   protected String to;
+  protected String toCnid;
   @JsonProperty(required = true)
   protected String from;
+  protected String fromCnid;
   protected int newMsgs;
   protected int oldMsgs;
   @JsonProperty(required = true)
@@ -22,12 +24,28 @@ public class Mwi {
     this.to = value;
   }
 
+  public String getToCnid() {
+    return toCnid;
+  }
+
+  public void setToCnid(String toCnid) {
+    this.toCnid = toCnid;
+  }
+
   public String getFrom() {
     return from;
   }
 
   public void setFrom(String value) {
     this.from = value;
+  }
+
+  public String getFromCnid() {
+    return fromCnid;
+  }
+
+  public void setFromCnid(String fromCnid) {
+    this.fromCnid = fromCnid;
   }
 
   public int getNewMsgs() {

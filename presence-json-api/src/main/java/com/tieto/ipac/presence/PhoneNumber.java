@@ -13,9 +13,7 @@ public class PhoneNumber {
   protected PhoneType phoneType;
   @JsonProperty(required = true)
   protected LineState lineState;
-  @JsonProperty(required = true)
   protected Direction direction;
-  @JsonProperty(required = true)
   protected DisconnectBy disconnectBy;
   protected List<Short> releaseCauseIndicators;
   protected List<CallPartNumber> callPartNumbers;
