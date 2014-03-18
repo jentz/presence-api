@@ -10,7 +10,7 @@
            elementFormDefault="qualified"
            attributeFormDefault="unqualified"
            jaxb:version="2.0"
-           version="0.0.5">
+           version="0.0.6">
 
   <xs:import namespace="urn:com.tieto.ipac.presence.common" schemaLocation="ipac-presence-common.xsd"/>
 
@@ -33,6 +33,7 @@
       <xs:element name="presenceStatus" type="tns:PresenceStatus" minOccurs="0"/>
       <xs:element name="notes" type="cm:Note" minOccurs="0" maxOccurs="unbounded"/> <!-- Can be many notes for same user, e.g. the user can have a personal and out off office notes at the same time -->
       <xs:element name="capabilites" type="xs:string" minOccurs="0" maxOccurs="unbounded"/> <!-- chat,mwi,presence? -->
+      <xs:element name="timestamp" type="xs:dateTime"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -42,7 +43,6 @@
       <xs:element name="activity" type="cm:ActivityType" minOccurs="0"/>
       <xs:element name="manual" type="xs:boolean"/>  <!-- Indicates whether this presence is set manually or automatically.-->
       <xs:element name="lastActive" type="xs:dateTime" minOccurs="0"/>
-      <xs:element name="timestamp" type="xs:dateTime" minOccurs="0"/>
       <xs:element name="phoneNumbers" type="cm:PhoneNumber" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="machines" type="cm:Machine" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>

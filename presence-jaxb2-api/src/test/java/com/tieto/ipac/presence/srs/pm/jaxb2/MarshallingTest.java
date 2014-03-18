@@ -22,8 +22,8 @@ import org.junit.Test;
 public class MarshallingTest {
 
   private static ObjectMapper mapper;
-  
-  
+
+
   @BeforeClass
   public static void setupClass() {
     mapper = new ObjectMapper();
@@ -34,33 +34,33 @@ public class MarshallingTest {
     AnnotationIntrospector secondary = new JaxbAnnotationIntrospector(TypeFactory.defaultInstance());
     AnnotationIntrospectorPair pair = new AnnotationIntrospectorPair(primary, secondary);
     mapper.setAnnotationIntrospector(pair);
-    
+
   }
-  
+
   @AfterClass
   public static void tearDownClass() {
-    
+
   }
-  
+
   @Test
   public void marshalPresence() throws JsonProcessingException {
     Presence presence = new Presence();
     presence.setBsnb("480123456");
     presence.setCnid("123456");
     presence.setLyncUri("uri:lync");
-    
+    presence.setTimestamp(new Date());
+
     PresenceStatus presenceStatus = new PresenceStatus();
     presenceStatus.setActivity(ActivityTokenTypeEnum.ON_THE_PHONE.toString());
     presenceStatus.setContactAvailability(ContactAvailability.NONE);
     presenceStatus.setManual(true);
     presenceStatus.setLastActive(new Date());
-    presenceStatus.setTimestamp(new Date());
-    
+
     presence.setPresenceStatus(presenceStatus);
-    
+
     String json = mapper.writeValueAsString(presence);
-    
+
     System.out.println(json);
-    
+
   }
 }

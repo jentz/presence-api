@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.tieto.ipac.presence.Note;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @JsonPropertyOrder(value = {"uri", "lyncUri"})
@@ -14,6 +15,7 @@ public class Presence {
   protected String lyncUri;
   protected String cnid;
   protected String bsnb;
+  protected Date timestamp;
   protected PresenceStatus presenceStatus;
   protected List<Note> notes;
   protected List<String> capabilites;
@@ -48,6 +50,14 @@ public class Presence {
 
   public void setBsnb(String value) {
     this.bsnb = value;
+  }
+
+  public Date getTimestamp() {
+    return timestamp;
+  }
+
+  public void setTimestamp(Date timestamp) {
+    this.timestamp = timestamp;
   }
 
   public PresenceStatus getPresenceStatus() {

@@ -36,12 +36,12 @@ public class MarshallingTest {
 //    String json = mapper.writeValueAsString(jsonSchema);
 //    System.out.println(json);
   }
-  
+
   @AfterClass
   public static void tearDownClass() {
-    
+
   }
-  
+
   @Test
   public void marshalPresence() throws JsonProcessingException, IOException {
     Presence from = new Presence();
@@ -49,19 +49,19 @@ public class MarshallingTest {
     from.setBsnb("480123456");
     from.setCnid("123456");
     from.setLyncUri("uri:lync");
-    
+    from.setTimestamp(new Date());
+
     PresenceStatus presenceStatus = new PresenceStatus();
     presenceStatus.setActivity(ActivityTokenTypeEnum.ON_THE_PHONE.value());
     presenceStatus.setContactAvailability(ContactAvailability.NONE);
     presenceStatus.setManual(true);
     presenceStatus.setLastActive(new Date());
-    presenceStatus.setTimestamp(new Date());
-    
+
     from.setPresenceStatus(presenceStatus);
 
     String json = mapper.writeValueAsString(from);
     System.out.println(json);
-    
+
     Presence to = mapper.readValue(json, Presence.class);
 
     assertThat(to.getBsnb(), equalTo(from.getBsnb()));

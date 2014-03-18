@@ -13,7 +13,6 @@ public class PresenceStatus {
   protected String activity;
   protected boolean manual;
   protected Date lastActive;
-  protected Date timestamp;
   protected List<PhoneNumber> phoneNumbers;
   protected List<Machine> machines;
 
@@ -49,21 +48,13 @@ public class PresenceStatus {
     this.lastActive = value;
   }
 
-  public Date getTimestamp() {
-    return timestamp;
-  }
-
-  public void setTimestamp(Date value) {
-    this.timestamp = value;
-  }
-
   /**
    * Gets the value of the phoneNumbers property.
    *
    * <p>
    * This accessor method returns a reference to the live list, not a snapshot.
    * Therefore any modification you make to the returned list will be present
-   * inside the JAXB object. This is why there is not a <CODE>set</CODE> method 
+   * inside the JAXB object. This is why there is not a <CODE>set</CODE> method
    * for the phoneNumbers property.
    * <p>
    * For example, to add a new item, do as follows:
