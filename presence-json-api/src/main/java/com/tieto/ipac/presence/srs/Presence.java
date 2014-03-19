@@ -15,6 +15,7 @@ public class Presence {
   protected String lyncUri;
   protected String cnid;
   protected String bsnb;
+  @JsonProperty(required = true)
   protected Date timestamp;
   protected PresenceStatus presenceStatus;
   protected List<Note> notes;
