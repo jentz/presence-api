@@ -4,10 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.tieto.ipac.presence.ActivityTokenTypeEnum;
-import com.tieto.ipac.presence.ContactAvailability;
 import java.io.IOException;
-import java.util.Date;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -44,20 +41,7 @@ public class MarshallingTest {
 
   @Test
   public void marshalPresence() throws JsonProcessingException, IOException {
-    Presence from = new Presence();
-    from.setUri("something");
-    from.setBsnb("480123456");
-    from.setCnid("123456");
-    from.setLyncUri("uri:lync");
-    from.setTimestamp(new Date());
-
-    PresenceStatus presenceStatus = new PresenceStatus();
-    presenceStatus.setActivity(ActivityTokenTypeEnum.ON_THE_PHONE.value());
-    presenceStatus.setContactAvailability(ContactAvailability.NONE);
-    presenceStatus.setManual(true);
-    presenceStatus.setLastActive(new Date());
-
-    from.setPresenceStatus(presenceStatus);
+    Presence from = PresenceFixtures.standardPresence();
 
     String json = mapper.writeValueAsString(from);
     System.out.println(json);
@@ -69,4 +53,36 @@ public class MarshallingTest {
     assertThat(to.getPresenceStatus().getLastActive(), equalTo(from.getPresenceStatus().getLastActive()));
     assertThat(to.getPresenceStatus().getContactAvailability(), equalTo(from.getPresenceStatus().getContactAvailability()));
   }
+
+  @Test
+  public void marshalPresenceRequest() throws JsonProcessingException, IOException {
+    PresenceRequest from = PresenceFixtures.standardPresenceRequest();
+    String json = mapper.writeValueAsString(from);
+    System.out.println(json);
+
+    PresenceRequest to = mapper.readValue(json, PresenceRequest.class);
+    assertThat(to.getCnid(), equalTo(from.getCnid()));
+    assertThat(to.isForcedUpdate(), equalTo(from.isForcedUpdate()));
+  }
+
+  @Test
+  public void marshalCentrexServiceRequest() throws JsonProcessingException, IOException {
+    CentrexServiceRequest from = PresenceFixtures.standardCentrexServiceRequest();
+    String json = mapper.writeValueAsString(from);
+    System.out.println(json);
+
+    CentrexServiceRequest to = mapper.readValue(json, CentrexServiceRequest.class);
+    assertThat(to.getCnid(), equalTo(from.getCnid()));
+  }
+
+  @Test
+  public void marshalCentrexServiceResponse() throws JsonProcessingException, IOException {
+    CentrexServiceResponse from = PresenceFixtures.standardCentrexServiceResponse();
+    String json = mapper.writeValueAsString(from);
+    System.out.println(json);
+
+    CentrexServiceResponse to = mapper.readValue(json, CentrexServiceResponse.class);
+    assertThat(to.getCnid(), equalTo(from.getCnid()));
+  }
+
 }

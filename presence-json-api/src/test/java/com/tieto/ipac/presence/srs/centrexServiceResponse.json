@@ -1,0 +1,12 @@
+{
+  "status" : 0,
+  "bsnb" : "6877",
+  "cnid" : "4680960000",
+  "centrexService" : {
+    "activated" : true,
+    "forwardedNumber" : null,
+    "absentCode" : 0,
+    "returnTime" : "2014-06-12T07:30:00.000+0000",
+    "serviceType" : "abs"
+  }
+}

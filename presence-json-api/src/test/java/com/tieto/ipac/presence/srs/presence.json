@@ -1,0 +1,44 @@
+{
+  "uri" : "sip:john.doe@acme.com",
+  "lyncUri" : "sip:john.doe@acme.com",
+  "cnid" : "4680960000",
+  "bsnb" : "6877",
+  "presenceStatus" : {
+    "contactAvailability" : "busy",
+    "activity" : "IN_A_MEETING",
+    "manual" : false,
+    "lastActive" : "2014-03-24T11:49:30.488+0000",
+    "phoneNumbers" : [ {
+      "uri" : "tel:+4680966877",
+      "bsnb" : "6877",
+      "centrexService" : {
+        "activated" : true,
+        "forwardedNumber" : null,
+        "absentCode" : 0,
+        "returnTime" : "2014-06-12T07:30:00.000+0000",
+        "serviceType" : "abs"
+      },
+      "direction" : null,
+      "disconnectBy" : null,
+      "releaseCauseIndicators" : [ 12, 2 ],
+      "callPartNumbers" : [ ],
+      "capabilities" : [ ],
+      "phoneType" : "voip",
+      "lineState" : "reachable",
+      "visibility" : "none"
+    } ],
+    "machines" : [ {
+      "state" : "idle",
+      "deviceType" : "laptop",
+      "endpointLocation" : "work",
+      "capabilities" : [ "unknown" ],
+      "machineName" : "ws123"
+    } ]
+  },
+  "notes" : [ {
+    "noteType" : "personal",
+    "message" : "Example note"
+  } ],
+  "capabilites" : [ ],
+  "timestamp" : "2014-03-24T11:49:30.486+0000"
+}
