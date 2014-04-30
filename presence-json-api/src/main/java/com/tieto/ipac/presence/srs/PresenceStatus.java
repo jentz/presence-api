@@ -1,5 +1,6 @@
 package com.tieto.ipac.presence.srs;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tieto.ipac.presence.ContactAvailability;
 import com.tieto.ipac.presence.Machine;
 import com.tieto.ipac.presence.PhoneNumber;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PresenceStatus {
 
   protected ContactAvailability contactAvailability;

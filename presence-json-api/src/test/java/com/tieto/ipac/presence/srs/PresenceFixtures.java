@@ -25,6 +25,7 @@ public class PresenceFixtures {
 
   public static final String STD_CNID = "4680960000";
   public static final String STD_BSNB = "6877";
+  public static final String STD_TEL = "tel:+4680966877";
 
   public static Presence standardPresence() {
     Presence p = new Presence();
@@ -36,6 +37,22 @@ public class PresenceFixtures {
     p.setPresenceStatus(standardPresenceStatus());
     p.getNotes().add(standardNote());
     return p;
+  }
+
+  public static Presence centrexPresence() {
+    Presence p = new Presence();
+    p.setBsnb(STD_BSNB);
+    p.setCnid(STD_CNID);
+    p.setUri(STD_TEL);
+    p.setTimestamp(new Date());
+    p.setPresenceStatus(centrexPresenceStatus());
+    return p;
+  }
+
+  private static PresenceStatus centrexPresenceStatus() {
+    PresenceStatus ps = new PresenceStatus();
+    ps.getPhoneNumbers().add(centrexPhoneNumber());
+    return ps;
   }
 
   private static PresenceStatus standardPresenceStatus() {
@@ -59,6 +76,17 @@ public class PresenceFixtures {
     return m;
   }
 
+  private static PhoneNumber centrexPhoneNumber() {
+    PhoneNumber pn = new PhoneNumber();
+    pn.setBsnb(STD_BSNB);
+    pn.setCentrexService(standardCentrexService());
+    pn.setLineState(LineState.REACHABLE);
+    pn.setPhoneType(PhoneType.UNKNOWN);
+    pn.setUri(STD_TEL);
+    pn.setVisibility(VisibilityLevel.NONE);
+    return pn;
+  }
+
   private static PhoneNumber standardPhoneNumber() {
     PhoneNumber pn = new PhoneNumber();
     pn.setBsnb(STD_BSNB);
@@ -67,7 +95,7 @@ public class PresenceFixtures {
     pn.setDisconnectBy(null);
     pn.setLineState(LineState.REACHABLE);
     pn.setPhoneType(PhoneType.VOIP);
-    pn.setUri("tel:+4680966877");
+    pn.setUri(STD_TEL);
     pn.setVisibility(VisibilityLevel.NONE);
     pn.getReleaseCauseIndicators().add((short)12);
     pn.getReleaseCauseIndicators().add((short)2);

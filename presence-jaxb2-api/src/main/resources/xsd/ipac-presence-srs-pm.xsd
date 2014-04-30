@@ -85,6 +85,7 @@
     <xs:sequence>
       <xs:element name="bsnb" type="xs:string"/>
       <xs:element name="cnid" type="xs:string"/>
+      <xs:element name="last" type="xs:boolean"/>  <!-- Indicates if this is the last response in a series-->
       <xs:element name="centrexService" type="cm:CentrexService"/>
     </xs:sequence>
   </xs:complexType>

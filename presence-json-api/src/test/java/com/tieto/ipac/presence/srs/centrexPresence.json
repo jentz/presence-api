@@ -1,0 +1,35 @@
+{
+  "uri" : "tel:+4680966877",
+  "lyncUri" : null,
+  "cnid" : "4680960000",
+  "bsnb" : "6877",
+  "presenceStatus" : {
+    "contactAvailability" : null,
+    "activity" : null,
+    "manual" : false,
+    "lastActive" : null,
+    "phoneNumbers" : [ {
+      "uri" : "tel:+4680966877",
+      "bsnb" : "6877",
+      "centrexService" : {
+        "activated" : true,
+        "forwardedNumber" : null,
+        "absentCode" : 0,
+        "returnTime" : "2014-06-12T07:30:00.000+0000",
+        "serviceType" : "abs"
+      },
+      "direction" : null,
+      "disconnectBy" : null,
+      "releaseCauseIndicators" : [ ],
+      "callPartNumbers" : [ ],
+      "capabilities" : [ ],
+      "phoneType" : "unknown",
+      "lineState" : "reachable",
+      "visibility" : "none"
+    } ],
+    "machines" : [ ]
+  },
+  "notes" : [ ],
+  "capabilites" : [ ],
+  "timestamp" : "2014-04-30T11:55:52.856+0000"
+}

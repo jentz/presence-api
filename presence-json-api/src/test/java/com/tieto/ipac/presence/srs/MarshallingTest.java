@@ -55,6 +55,21 @@ public class MarshallingTest {
   }
 
   @Test
+  public void marshalCentrexPresence() throws JsonProcessingException, IOException {
+    Presence from = PresenceFixtures.centrexPresence();
+
+    String json = mapper.writeValueAsString(from);
+    System.out.println(json);
+
+    Presence to = mapper.readValue(json, Presence.class);
+
+    assertThat(to.getBsnb(), equalTo(from.getBsnb()));
+    assertThat(to.getCnid(), equalTo(from.getCnid()));
+    assertThat(to.getPresenceStatus().getLastActive(), equalTo(from.getPresenceStatus().getLastActive()));
+    assertThat(to.getPresenceStatus().getContactAvailability(), equalTo(from.getPresenceStatus().getContactAvailability()));
+  }
+
+  @Test
   public void marshalPresenceRequest() throws JsonProcessingException, IOException {
     PresenceRequest from = PresenceFixtures.standardPresenceRequest();
     String json = mapper.writeValueAsString(from);

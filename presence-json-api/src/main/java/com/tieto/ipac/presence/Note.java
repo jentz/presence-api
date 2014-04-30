@@ -1,7 +1,9 @@
 package com.tieto.ipac.presence;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Note {
 
   @JsonProperty(required = true)

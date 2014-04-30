@@ -1,8 +1,10 @@
 package com.tieto.ipac.presence;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CentrexService {
 
   @JsonProperty(required = true)

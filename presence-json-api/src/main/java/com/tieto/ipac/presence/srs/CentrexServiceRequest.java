@@ -1,8 +1,10 @@
 package com.tieto.ipac.presence.srs;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tieto.ipac.presence.CentrexService;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CentrexServiceRequest {
 
   @JsonProperty(required = true)
