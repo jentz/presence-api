@@ -123,7 +123,6 @@ public class PresenceFixtures {
   static CentrexServiceResponse standardCentrexServiceResponse() {
     CentrexServiceResponse r = new CentrexServiceResponse();
     r.setBsnb(STD_BSNB);
-    r.setCentrexService(standardCentrexService());
     r.setCnid(STD_CNID);
     r.setStatus(0);
     return r;

@@ -1,14 +1,16 @@
 package com.tieto.ipac.presence.srs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.tieto.ipac.presence.CentrexService;
 
-public class CentrexServiceResponse {
+public class SrsPresenceResponse {
 
   @JsonProperty(required = true)
   protected String bsnb;
   @JsonProperty(required = true)
   protected String cnid;
-  protected int status;
+  @JsonProperty(required = true)
+  protected CentrexService centrexService;
 
   public String getBsnb() {
     return bsnb;
@@ -26,12 +28,12 @@ public class CentrexServiceResponse {
     this.cnid = value;
   }
 
-  public int getStatus() {
-    return status;
+  public CentrexService getCentrexService() {
+    return centrexService;
   }
 
-  public void setStatus(int value) {
-    this.status = value;
+  public void setCentrexService(CentrexService value) {
+    this.centrexService = value;
   }
 
 }

@@ -10,7 +10,7 @@
            elementFormDefault="qualified"
            attributeFormDefault="unqualified"
            jaxb:version="2.0"
-           version="0.0.6">
+           version="0.0.7">
 
   <xs:import namespace="urn:com.tieto.ipac.presence.common" schemaLocation="ipac-presence-common.xsd"/>
 
@@ -69,8 +69,23 @@
     <xs:sequence>
       <xs:element name="bsnb" type="xs:string"/>
       <xs:element name="cnid" type="xs:string"/>
-      <xs:element name="centrexService" type="cm:CentrexService"/>
       <xs:element name="status" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SrsPresenceRequest">
+    <xs:sequence>
+      <xs:element name="presenceSystemId" type="xs:string"/>
+      <xs:element name="cnid" type="xs:string"/>
+      <xs:element name="bsnb" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SrsPresenceResponse">
+    <xs:sequence>
+      <xs:element name="bsnb" type="xs:string"/>
+      <xs:element name="cnid" type="xs:string"/>
+      <xs:element name="centrexService" type="cm:CentrexService"/>
     </xs:sequence>
   </xs:complexType>
 
