@@ -10,7 +10,7 @@
            elementFormDefault="qualified"
            attributeFormDefault="unqualified"
            jaxb:version="2.0"
-           version="0.0.7">
+           version="0.0.8">
 
   <xs:import namespace="urn:com.tieto.ipac.presence.common" schemaLocation="ipac-presence-common.xsd"/>
 
@@ -51,7 +51,7 @@
   <xs:complexType name="PresenceRequest">
     <xs:sequence>
       <xs:element name="uris" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="lyncIds" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="lyncUris" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="cnid" type="xs:string"/>
       <xs:element name="forcedUpdate" type="xs:boolean"/>
     </xs:sequence>
@@ -83,10 +83,10 @@
 
   <xs:complexType name="SrsPresenceResponse">
     <xs:sequence>
-      <xs:element name="bsnb" type="xs:string"/>
-      <xs:element name="cnid" type="xs:string"/>
+      <xs:element name="bsnb" type="xs:string" minOccurs="0"/>
+      <xs:element name="cnid" type="xs:string" minOccurs="0"/>
       <xs:element name="last" type="xs:boolean"/>  <!-- Indicates if this is the last response in a series-->
-      <xs:element name="centrexService" type="cm:CentrexService"/>
+      <xs:element name="centrexService" type="cm:CentrexService" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 

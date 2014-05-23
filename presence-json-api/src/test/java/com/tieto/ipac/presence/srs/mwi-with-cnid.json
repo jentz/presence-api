@@ -1,0 +1,10 @@
+{
+  "toCnid" : "4680960000",
+  "fromCnid" : "4680960000",
+  "newMsgs" : 1,
+  "oldMsgs" : 0,
+  "msgData" : "Message",
+  "to" : "tel:6877",
+  "from" : "tel:6800",
+  "mwiType" : "text"
+}

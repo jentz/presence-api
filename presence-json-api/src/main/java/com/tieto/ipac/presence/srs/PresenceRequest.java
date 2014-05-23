@@ -9,7 +9,7 @@ import java.util.List;
 public class PresenceRequest {
 
   protected List<String> uris;
-  protected List<String> lyncIds;
+  protected List<String> lyncUris;
   @JsonProperty(required = true)
   protected String cnid;
   protected boolean forcedUpdate;
@@ -21,11 +21,11 @@ public class PresenceRequest {
     return this.uris;
   }
 
-  public List<String> getLyncIds() {
-    if (lyncIds == null) {
-      lyncIds = new ArrayList<>();
+  public List<String> getLyncUris() {
+    if (lyncUris == null) {
+      lyncUris = new ArrayList<>();
     }
-    return this.lyncIds;
+    return this.lyncUris;
   }
 
   public String getCnid() {

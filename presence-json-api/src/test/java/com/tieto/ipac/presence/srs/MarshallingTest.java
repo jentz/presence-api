@@ -44,6 +44,7 @@ public class MarshallingTest {
     Presence from = PresenceFixtures.standardPresence();
 
     String json = mapper.writeValueAsString(from);
+    System.out.println("marshalPresence()");
     System.out.println(json);
 
     Presence to = mapper.readValue(json, Presence.class);
@@ -59,6 +60,7 @@ public class MarshallingTest {
     Presence from = PresenceFixtures.centrexPresence();
 
     String json = mapper.writeValueAsString(from);
+    System.out.println("marshalCentrexPresence()");
     System.out.println(json);
 
     Presence to = mapper.readValue(json, Presence.class);
@@ -73,6 +75,7 @@ public class MarshallingTest {
   public void marshalPresenceRequest() throws JsonProcessingException, IOException {
     PresenceRequest from = PresenceFixtures.standardPresenceRequest();
     String json = mapper.writeValueAsString(from);
+    System.out.println("marshalPresenceRequest()");
     System.out.println(json);
 
     PresenceRequest to = mapper.readValue(json, PresenceRequest.class);
@@ -84,6 +87,7 @@ public class MarshallingTest {
   public void marshalCentrexServiceRequest() throws JsonProcessingException, IOException {
     CentrexServiceRequest from = PresenceFixtures.standardCentrexServiceRequest();
     String json = mapper.writeValueAsString(from);
+    System.out.println("marshalCentrexServiceRequest()");
     System.out.println(json);
 
     CentrexServiceRequest to = mapper.readValue(json, CentrexServiceRequest.class);
@@ -94,10 +98,33 @@ public class MarshallingTest {
   public void marshalCentrexServiceResponse() throws JsonProcessingException, IOException {
     CentrexServiceResponse from = PresenceFixtures.standardCentrexServiceResponse();
     String json = mapper.writeValueAsString(from);
+    System.out.println("marshalCentrexServiceResponse()");
     System.out.println(json);
 
     CentrexServiceResponse to = mapper.readValue(json, CentrexServiceResponse.class);
     assertThat(to.getCnid(), equalTo(from.getCnid()));
+  }
+
+  @Test
+  public void marshalMwiWithCnid() throws JsonProcessingException, IOException {
+    Mwi from = PresenceFixtures.standardMwiWithCnid();
+    String json = mapper.writeValueAsString(from);
+    System.out.println("marshalMwiWithCnid()");
+    System.out.println(json);
+
+    Mwi to = mapper.readValue(json, Mwi.class);
+    assertThat(to.getFrom(), equalTo(from.getFrom()));
+  }
+
+  @Test
+  public void marshalMwiNoCnid() throws JsonProcessingException, IOException {
+    Mwi from = PresenceFixtures.standardMwiNoCnid();
+    String json = mapper.writeValueAsString(from);
+    System.out.println("marshalMwiNoCnid()");
+    System.out.println(json);
+
+    Mwi to = mapper.readValue(json, Mwi.class);
+    assertThat(to.getFrom(), equalTo(from.getFrom()));
   }
 
 }

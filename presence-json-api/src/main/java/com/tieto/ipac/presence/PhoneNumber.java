@@ -1,7 +1,6 @@
 package com.tieto.ipac.presence;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,16 +10,13 @@ public class PhoneNumber {
   protected String uri;
   protected String bsnb;
   protected CentrexService centrexService;
-  @JsonProperty(required = true)
   protected PhoneType phoneType;
-  @JsonProperty(required = true)
   protected LineState lineState;
   protected Direction direction;
   protected DisconnectBy disconnectBy;
   protected List<Short> releaseCauseIndicators;
   protected List<CallPartNumber> callPartNumbers;
   protected List<PhoneCapability> capabilities;
-  @JsonProperty(required = true)
   protected VisibilityLevel visibility;
 
   public String getUri() {

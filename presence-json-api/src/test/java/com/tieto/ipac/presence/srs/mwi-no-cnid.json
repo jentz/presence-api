@@ -1,0 +1,8 @@
+{
+  "newMsgs" : 1,
+  "oldMsgs" : 0,
+  "msgData" : "Message",
+  "to" : "sip:mark@tieto.com",
+  "from" : "sip:telefonist@tieto.com",
+  "mwiType" : "text"
+}

@@ -12,6 +12,7 @@ public class CentrexService {
   protected boolean activated;
   protected String forwardedNumber;
   protected Integer absentCode;
+  protected Integer absentMessageId;
   protected Date returnTime;
 
   public ServiceType getServiceType() {
@@ -46,6 +47,14 @@ public class CentrexService {
     this.absentCode = value;
   }
 
+  public Integer getAbsentMessageId() {
+    return absentMessageId;
+  }
+
+  public void setAbsentMessageId(Integer absentMessageId) {
+    this.absentMessageId = absentMessageId;
+  }
+  
   public Date getReturnTime() {
     return returnTime;
   }

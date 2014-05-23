@@ -57,7 +57,7 @@ public class PresenceFixtures {
 
   private static PresenceStatus standardPresenceStatus() {
     PresenceStatus ps = new PresenceStatus();
-    ps.setActivity(ActivityTokenTypeEnum.IN_A_MEETING.toString());
+    ps.setActivity(ActivityTokenTypeEnum.IN_A_MEETING.value());
     ps.setContactAvailability(ContactAvailability.BUSY);
     ps.setLastActive(new Date());
     ps.setManual(false);
@@ -153,6 +153,30 @@ public class PresenceFixtures {
     r.setBsnb(STD_BSNB);
     r.setCnid(STD_CNID);
     r.setStatus(0);
+    return r;
+  }
+
+  static Mwi standardMwiWithCnid() {
+    Mwi r = new Mwi();
+    r.setFrom("tel:6800");
+    r.setFromCnid(STD_CNID);
+    r.setMsgData("Message");
+    r.setMwiType(MwiType.TEXT);
+    r.setNewMsgs(1);
+    r.setOldMsgs(0);
+    r.setTo("tel:6877");
+    r.setToCnid(STD_CNID);
+    return r;
+  }
+
+  static Mwi standardMwiNoCnid() {
+    Mwi r = new Mwi();
+    r.setFrom("sip:telefonist@tieto.com");
+    r.setMsgData("Message");
+    r.setMwiType(MwiType.TEXT);
+    r.setNewMsgs(1);
+    r.setOldMsgs(0);
+    r.setTo("sip:mark@tieto.com");
     return r;
   }
 }

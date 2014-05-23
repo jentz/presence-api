@@ -1,0 +1,19 @@
+{
+  "uri": "sip:920@tieto.com",
+  "bsnb": "",
+  "timestamp": "2014-05-12T11:03:24.967+0000",
+  "presenceStatus": {
+    "phoneNumbers": [
+      {
+        "uri": "tel:+46705999963",
+        "bsnb": "",
+        "phoneType": "mobile",
+        "lineState": "reachable",
+        "visibility": "none"
+      }
+    ]
+  },
+  "capabilites": [
+    "presence"
+  ]
+}

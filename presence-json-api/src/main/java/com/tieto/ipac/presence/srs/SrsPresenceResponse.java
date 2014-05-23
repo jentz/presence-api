@@ -1,19 +1,14 @@
 package com.tieto.ipac.presence.srs;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tieto.ipac.presence.CentrexService;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SrsPresenceResponse {
 
-  @JsonProperty(required = true)
   protected String bsnb;
-  @JsonProperty(required = true)
   protected String cnid;
-  @JsonProperty(required = true)
   protected boolean last;
-  @JsonProperty(required = true)
   protected CentrexService centrexService;
 
   public String getBsnb() {

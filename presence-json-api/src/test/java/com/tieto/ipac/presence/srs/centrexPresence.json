@@ -1,5 +1,5 @@
 {
-  "uri" : "tel:+4680966877",
+  "uri" : null,
   "lyncUri" : null,
   "cnid" : "4680960000",
   "bsnb" : "6877",
@@ -9,7 +9,7 @@
     "manual" : false,
     "lastActive" : null,
     "phoneNumbers" : [ {
-      "uri" : "tel:+4680966877",
+      "uri" : null,
       "bsnb" : "6877",
       "centrexService" : {
         "activated" : true,
